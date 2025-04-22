@@ -5,7 +5,7 @@ import { tvShows, TVShow } from '@/utils/tvShowsData';
 import TVShowCard from '@/components/TVShowCard';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { Search, Layout, Grid } from 'lucide-react';
+import { Search, Layout, Grid, Star } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
