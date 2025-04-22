@@ -1,4 +1,3 @@
-
 export interface Movie {
   id: number;
   title: string;
@@ -13,6 +12,7 @@ export interface Movie {
   cast: string[];
   trailerUrl: string;
   platforms: Platform[];
+  language: string;
 }
 
 export interface Platform {
@@ -33,7 +33,6 @@ export interface User {
   reviews: number;
 }
 
-// Sample platforms
 const platforms: Platform[] = [
   {
     name: "Netflix",
@@ -57,7 +56,6 @@ const platforms: Platform[] = [
   }
 ];
 
-// Sample movies
 export const movies: Movie[] = [
   {
     id: 1,
@@ -72,7 +70,8 @@ export const movies: Movie[] = [
     director: "Christopher Nolan",
     cast: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page", "Tom Hardy"],
     trailerUrl: "https://www.youtube.com/embed/YoHD9XEInc0",
-    platforms: [platforms[0], platforms[1]]
+    platforms: [platforms[0], platforms[1]],
+    language: "English"
   },
   {
     id: 2,
@@ -87,7 +86,8 @@ export const movies: Movie[] = [
     director: "Frank Darabont",
     cast: ["Tim Robbins", "Morgan Freeman", "Bob Gunton", "William Sadler"],
     trailerUrl: "https://www.youtube.com/embed/6hB3S9bIaco",
-    platforms: [platforms[1], platforms[3]]
+    platforms: [platforms[1], platforms[3]],
+    language: "English"
   },
   {
     id: 3,
@@ -102,7 +102,8 @@ export const movies: Movie[] = [
     director: "Christopher Nolan",
     cast: ["Christian Bale", "Heath Ledger", "Aaron Eckhart", "Michael Caine"],
     trailerUrl: "https://www.youtube.com/embed/EXeTwQWrcwY",
-    platforms: [platforms[0], platforms[2]]
+    platforms: [platforms[0], platforms[2]],
+    language: "English"
   },
   {
     id: 4,
@@ -117,7 +118,8 @@ export const movies: Movie[] = [
     director: "Quentin Tarantino",
     cast: ["John Travolta", "Samuel L. Jackson", "Uma Thurman", "Bruce Willis"],
     trailerUrl: "https://www.youtube.com/embed/s7EdQ4FqbhY",
-    platforms: [platforms[1], platforms[3]]
+    platforms: [platforms[1], platforms[3]],
+    language: "English"
   },
   {
     id: 5,
@@ -132,7 +134,8 @@ export const movies: Movie[] = [
     director: "Peter Jackson",
     cast: ["Elijah Wood", "Viggo Mortensen", "Ian McKellen", "Orlando Bloom"],
     trailerUrl: "https://www.youtube.com/embed/r5X-hFf6Bwo",
-    platforms: [platforms[0], platforms[2]]
+    platforms: [platforms[0], platforms[2]],
+    language: "English"
   },
   {
     id: 6,
@@ -147,7 +150,8 @@ export const movies: Movie[] = [
     director: "Robert Zemeckis",
     cast: ["Tom Hanks", "Robin Wright", "Gary Sinise", "Sally Field"],
     trailerUrl: "https://www.youtube.com/embed/bLvqoHBptjg",
-    platforms: [platforms[1], platforms[3]]
+    platforms: [platforms[1], platforms[3]],
+    language: "English"
   },
   {
     id: 7,
@@ -162,7 +166,8 @@ export const movies: Movie[] = [
     director: "Lana Wachowski, Lilly Wachowski",
     cast: ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss", "Hugo Weaving"],
     trailerUrl: "https://www.youtube.com/embed/vKQi3bBA1y8",
-    platforms: [platforms[0], platforms[2]]
+    platforms: [platforms[0], platforms[2]],
+    language: "English"
   },
   {
     id: 8,
@@ -177,7 +182,8 @@ export const movies: Movie[] = [
     director: "Martin Scorsese",
     cast: ["Robert De Niro", "Ray Liotta", "Joe Pesci", "Lorraine Bracco"],
     trailerUrl: "https://www.youtube.com/embed/qo5jJpHtI1Y",
-    platforms: [platforms[1], platforms[3]]
+    platforms: [platforms[1], platforms[3]],
+    language: "English"
   },
   {
     id: 9,
@@ -192,7 +198,8 @@ export const movies: Movie[] = [
     director: "David Fincher",
     cast: ["Brad Pitt", "Edward Norton", "Helena Bonham Carter", "Meat Loaf"],
     trailerUrl: "https://www.youtube.com/embed/qtRKdVHc-cE",
-    platforms: [platforms[0], platforms[2]]
+    platforms: [platforms[0], platforms[2]],
+    language: "English"
   },
   {
     id: 10,
@@ -207,17 +214,143 @@ export const movies: Movie[] = [
     director: "Francis Ford Coppola",
     cast: ["Marlon Brando", "Al Pacino", "James Caan", "Diane Keaton"],
     trailerUrl: "https://www.youtube.com/embed/sY1S34973zA",
-    platforms: [platforms[1], platforms[3]]
+    platforms: [platforms[1], platforms[3]],
+    language: "English"
+  },
+  {
+    id: 11,
+    title: "3 Idiots",
+    posterUrl: "https://m.media-amazon.com/images/I/81+39GHScpL._AC_SY679_.jpg",
+    backdropUrl: "https://m.media-amazon.com/images/M/MV5BMjM0N2QzYmUtZjlkYS00MDg5LWFmYzMtZWRhN2M4NWNhNzViXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+    year: 2009,
+    rating: 8.4,
+    runtime: "2h 50m",
+    genre: ["Comedy", "Drama"],
+    plot: "Two friends are searching for their long lost companion. They revisit their college days and recall the memories of their friend who inspired them to think differently.",
+    director: "Rajkumar Hirani",
+    cast: ["Aamir Khan", "Kareena Kapoor", "R. Madhavan", "Sharman Joshi"],
+    trailerUrl: "https://www.youtube.com/embed/xvszmNXdM4w",
+    platforms: [platforms[0], platforms[1]],
+    language: "Hindi"
+  },
+  {
+    id: 12,
+    title: "Gully Boy",
+    posterUrl: "https://m.media-amazon.com/images/I/81nXAJRqtzL._AC_SY679_.jpg",
+    backdropUrl: "https://m.media-amazon.com/images/M/MV5BOWU2NzQ0MTQtZmM4NS00YWRmLTgyYjgtMDMxNmNlODI2OGY5XkEyXkFqcGdeQXVyODAzNzAwOTg@._V1_.jpg",
+    year: 2019,
+    rating: 8.0,
+    runtime: "2h 33m",
+    genre: ["Drama", "Music"],
+    plot: "A coming-of-age story based on the lives of street rappers in Mumbai.",
+    director: "Zoya Akhtar",
+    cast: ["Ranveer Singh", "Alia Bhatt", "Siddhant Chaturvedi"],
+    trailerUrl: "https://www.youtube.com/embed/JfbxcD6biOk",
+    platforms: [platforms[1], platforms[3]],
+    language: "Hindi"
+  },
+  {
+    id: 13,
+    title: "Baahubali: The Beginning",
+    posterUrl: "https://m.media-amazon.com/images/I/91I7WPkQYaL._AC_SY679_.jpg",
+    backdropUrl: "https://m.media-amazon.com/images/M/MV5BZDcwODBhYWQtYTQxNS00MjU2LThjYmItZTZiMjJlMDBjY2U0XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+    year: 2015,
+    rating: 8.0,
+    runtime: "2h 39m",
+    genre: ["Action", "Adventure", "Fantasy"],
+    plot: "In ancient India, an adventurous and daring man becomes involved in a decades-old feud between two warring peoples.",
+    director: "S.S. Rajamouli",
+    cast: ["Prabhas", "Rana Daggubati", "Anushka Shetty", "Tamannaah"],
+    trailerUrl: "https://www.youtube.com/embed/sOEg_YZQsTI",
+    platforms: [platforms[2], platforms[1]],
+    language: "Telugu"
+  },
+  {
+    id: 14,
+    title: "Jersey",
+    posterUrl: "https://m.media-amazon.com/images/I/71oV4cL4jDL._AC_SY679_.jpg",
+    backdropUrl: "https://m.media-amazon.com/images/M/MV5BY2Y3OTUzYzItODViNy00NmZkLTg0MGItODdkODY1NGVmNzE2XkEyXkFqcGdeQXVyMTY2NTk2NDg3._V1_FMjpg_UX1000_.jpg",
+    year: 2019,
+    rating: 8.5,
+    runtime: "2h 40m",
+    genre: ["Drama", "Sport"],
+    plot: "A failed cricketer decides to revive his career at the age of 36 for his son's wish.",
+    director: "Gowtam Tinnanuri",
+    cast: ["Nani", "Shraddha Srinath", "Harish Kalyan"],
+    trailerUrl: "https://www.youtube.com/embed/poLpq-38UYs",
+    platforms: [platforms[1], platforms[3]],
+    language: "Telugu"
+  },
+  {
+    id: 15,
+    title: "Super Deluxe",
+    posterUrl: "https://m.media-amazon.com/images/I/814TJ5YQs6L._AC_SY679_.jpg",
+    backdropUrl: "https://m.media-amazon.com/images/M/MV5BZjJkNGZhMmQtMmQ4Zi00Y2E3LWE4MTUtYTAzNzk4ZDYzOTkwXkEyXkFqcGdeQXVyNTAzNzgwNTg@._V1_.jpg",
+    year: 2019,
+    rating: 8.4,
+    runtime: "2h 56m",
+    genre: ["Drama", "Crime", "Thriller"],
+    plot: "An unfaithful wife, an estranged father, and an angry boy must all face their demons on one fateful day.",
+    director: "Thiagarajan Kumararaja",
+    cast: ["Vijay Sethupathi", "Fahadh Faasil", "Samantha Ruth Prabhu", "Ramya Krishnan"],
+    trailerUrl: "https://www.youtube.com/embed/xMpbN9yDDlU",
+    platforms: [platforms[2], platforms[0]],
+    language: "Tamil"
+  },
+  {
+    id: 16,
+    title: "Soorarai Pottru",
+    posterUrl: "https://m.media-amazon.com/images/I/81vDOjVU+vL._AC_SY679_.jpg",
+    backdropUrl: "https://m.media-amazon.com/images/M/MV5BNDNmYzVkYjktYjQ5OC00Y2E3LWE4MTUtYTAzNzk4ZDYzOTkwXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_FMjpg_UX1000_.jpg",
+    year: 2020,
+    rating: 8.7,
+    runtime: "2h 33m",
+    genre: ["Drama"],
+    plot: "Inspired by the book 'Simply Fly', the story traces the rise of a common man from rural roots to an aviation entrepreneur.",
+    director: "Sudha Kongara",
+    cast: ["Suriya", "Aparna Balamurali", "Paresh Rawal"],
+    trailerUrl: "https://www.youtube.com/embed/fa_DIwRsa9o",
+    platforms: [platforms[1], platforms[2]],
+    language: "Tamil"
+  },
+  {
+    id: 17,
+    title: "Parasite",
+    posterUrl: "https://m.media-amazon.com/images/I/51zUbui+gbL._AC_.jpg",
+    backdropUrl: "https://m.media-amazon.com/images/M/MV5BYWZjMWE5ZjYtNTEwOC00MTFkLWEwNzEtYjljMGJhNzIzYWQwXkEyXkFqcGdeQXVyNjUxMjc1OTM@._V1_.jpg",
+    year: 2019,
+    rating: 8.6,
+    runtime: "2h 12m",
+    genre: ["Thriller", "Drama"],
+    plot: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
+    director: "Bong Joon-ho",
+    cast: ["Song Kang-ho", "Lee Sun-kyun", "Cho Yeo-jeong"],
+    trailerUrl: "https://www.youtube.com/embed/5xH0HfJHsaY",
+    platforms: [platforms[0], platforms[3]],
+    language: "English"
+  },
+  {
+    id: 18,
+    title: "Interstellar",
+    posterUrl: "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
+    backdropUrl: "https://image.tmdb.org/t/p/original/xu9zaAevzQ5nnrsXN6JcahLnG4i.jpg",
+    year: 2014,
+    rating: 8.6,
+    runtime: "2h 49m",
+    genre: ["Adventure", "Drama", "Sci-Fi"],
+    plot: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    director: "Christopher Nolan",
+    cast: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain", "Matt Damon"],
+    trailerUrl: "https://www.youtube.com/embed/zSWdZVtXT7E",
+    platforms: [platforms[0], platforms[1]],
+    language: "English"
   }
 ];
 
-// Sample trending movies (using the same movies for now)
-export const trendingMovies = movies.slice(0, 5);
+export const trendingMovies = movies.slice(0, 8);
 
-// Sample top rated movies (using the same movies for now)
-export const topRatedMovies = [...movies].sort((a, b) => b.rating - a.rating).slice(0, 5);
+export const topRatedMovies = [...movies].sort((a, b) => b.rating - a.rating).slice(0, 8);
 
-// Sample user
 export const currentUser: User = {
   id: 1,
   name: "John Doe",
