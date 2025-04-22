@@ -60,7 +60,7 @@ export const movies: Movie[] = [
   {
     id: 1,
     title: "Inception",
-    posterUrl: "https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg",
+    posterUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     backdropUrl: "https://image.tmdb.org/t/p/original/s3TBrRGB1iav7gFOCNx3H31MoES.jpg",
     year: 2010,
     rating: 8.8,
@@ -332,7 +332,7 @@ export const movies: Movie[] = [
   {
     id: 18,
     title: "Interstellar",
-    posterUrl: "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
+    posterUrl: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?q=80&w=500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     backdropUrl: "https://image.tmdb.org/t/p/original/xu9zaAevzQ5nnrsXN6JcahLnG4i.jpg",
     year: 2014,
     rating: 8.6,
@@ -343,6 +343,38 @@ export const movies: Movie[] = [
     cast: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain", "Matt Damon"],
     trailerUrl: "https://www.youtube.com/embed/zSWdZVtXT7E",
     platforms: [platforms[0], platforms[1]],
+    language: "English"
+  },
+  {
+    id: 19,
+    title: "Ocean's Eleven",
+    posterUrl: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    backdropUrl: "https://image.tmdb.org/t/p/original/awAO4f8Bry4Pm4kRvDlJips8xAA.jpg",
+    year: 2001,
+    rating: 7.8,
+    runtime: "1h 56m",
+    genre: ["Crime", "Thriller"],
+    plot: "Danny Ocean and his eleven accomplices plan to rob three Las Vegas casinos in a single night.",
+    director: "Steven Soderbergh",
+    cast: ["George Clooney", "Brad Pitt", "Julia Roberts", "Matt Damon"],
+    trailerUrl: "https://www.youtube.com/embed/u18sSgOEV48",
+    platforms: [platforms[0], platforms[1]],
+    language: "English"
+  },
+  {
+    id: 20,
+    title: "The Green Mile",
+    posterUrl: "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?q=80&w=500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    backdropUrl: "https://image.tmdb.org/t/p/original/velWyPUMIPaRg1iRbDn1dABZSGN.jpg",
+    year: 1999,
+    rating: 8.6,
+    runtime: "3h 9m",
+    genre: ["Drama", "Crime", "Fantasy"],
+    plot: "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder and rape, yet who has a mysterious gift.",
+    director: "Frank Darabont",
+    cast: ["Tom Hanks", "Michael Clarke Duncan", "David Morse", "Bonnie Hunt"],
+    trailerUrl: "https://www.youtube.com/embed/Bg7epsq9rYk",
+    platforms: [platforms[1], platforms[3]],
     language: "English"
   }
 ];
