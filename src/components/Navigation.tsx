@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, Search, Bell, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import SearchBar from './SearchBar';
@@ -8,6 +8,7 @@ import SearchBar from './SearchBar';
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const location = useLocation();
 
   return (
     <nav className="neo-blur fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-6">
@@ -19,10 +20,30 @@ const Navigation = () => {
           </Link>
           
           <div className="hidden md:flex ml-8 space-x-6">
-            <Link to="/" className="text-white hover:text-cinebuzz-accent transition-colors">Home</Link>
-            <Link to="/movies" className="text-white hover:text-cinebuzz-accent transition-colors">Movies</Link>
-            <Link to="/tv-shows" className="text-white hover:text-cinebuzz-accent transition-colors">TV Shows</Link>
-            <Link to="/watchlist" className="text-white hover:text-cinebuzz-accent transition-colors">Watchlist</Link>
+            <Link 
+              to="/" 
+              className={`text-white transition-colors ${location.pathname === '/' ? 'text-cinebuzz-accent' : 'hover:text-cinebuzz-accent'}`}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/movies" 
+              className={`text-white transition-colors ${location.pathname === '/movies' ? 'text-cinebuzz-accent' : 'hover:text-cinebuzz-accent'}`}
+            >
+              Movies
+            </Link>
+            <Link 
+              to="/tv-shows" 
+              className={`text-white transition-colors ${location.pathname === '/tv-shows' ? 'text-cinebuzz-accent' : 'hover:text-cinebuzz-accent'}`}
+            >
+              TV Shows
+            </Link>
+            <Link 
+              to="/watchlist" 
+              className={`text-white transition-colors ${location.pathname === '/watchlist' ? 'text-cinebuzz-accent' : 'hover:text-cinebuzz-accent'}`}
+            >
+              Watchlist
+            </Link>
           </div>
         </div>
         
@@ -84,35 +105,35 @@ const Navigation = () => {
           <div className="flex flex-col space-y-4">
             <Link 
               to="/" 
-              className="text-white hover:text-cinebuzz-accent transition-colors py-2 border-b border-gray-800"
+              className={`transition-colors py-2 border-b border-gray-800 ${location.pathname === '/' ? 'text-cinebuzz-accent' : 'text-white hover:text-cinebuzz-accent'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
             <Link 
               to="/movies" 
-              className="text-white hover:text-cinebuzz-accent transition-colors py-2 border-b border-gray-800"
+              className={`transition-colors py-2 border-b border-gray-800 ${location.pathname === '/movies' ? 'text-cinebuzz-accent' : 'text-white hover:text-cinebuzz-accent'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Movies
             </Link>
             <Link 
               to="/tv-shows" 
-              className="text-white hover:text-cinebuzz-accent transition-colors py-2 border-b border-gray-800"
+              className={`transition-colors py-2 border-b border-gray-800 ${location.pathname === '/tv-shows' ? 'text-cinebuzz-accent' : 'text-white hover:text-cinebuzz-accent'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               TV Shows
             </Link>
             <Link 
               to="/watchlist" 
-              className="text-white hover:text-cinebuzz-accent transition-colors py-2 border-b border-gray-800"
+              className={`transition-colors py-2 border-b border-gray-800 ${location.pathname === '/watchlist' ? 'text-cinebuzz-accent' : 'text-white hover:text-cinebuzz-accent'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Watchlist
             </Link>
             <Link 
               to="/profile" 
-              className="text-white hover:text-cinebuzz-accent transition-colors py-2 border-b border-gray-800"
+              className={`transition-colors py-2 border-b border-gray-800 ${location.pathname === '/profile' ? 'text-cinebuzz-accent' : 'text-white hover:text-cinebuzz-accent'}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Profile
