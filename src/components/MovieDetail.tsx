@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import { Star, Clock, Plus, Share2, Play } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Movie } from '@/utils/movieData';
+import { Movie, movies } from '@/utils/movieData';
+import MovieCard from "@/components/MovieCard";
 
 interface MovieDetailProps {
   movie: Movie;
@@ -15,7 +15,6 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
 
   return (
     <div className="pt-16">
-      {/* Backdrop with gradient overlay */}
       <div className="relative h-[50vh] w-full overflow-hidden">
         <div 
           className="absolute inset-0 w-full h-full bg-cover bg-center"
@@ -23,15 +22,12 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
             backgroundImage: `url(${movie.backdropUrl})`,
           }}
         >
-          {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-cinebuzz-background via-cinebuzz-background/70 to-transparent opacity-100"></div>
         </div>
       </div>
       
-      {/* Movie details */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 -mt-72 relative z-10">
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Poster */}
           <div className="flex-none">
             <div className="w-48 md:w-64 aspect-[2/3] rounded-lg overflow-hidden shadow-xl">
               <img 
@@ -42,7 +38,6 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
             </div>
           </div>
           
-          {/* Details */}
           <div className="flex-grow">
             <h1 className="text-3xl md:text-5xl font-bold text-white font-heading mb-3">
               {movie.title}
@@ -121,7 +116,6 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
           </div>
         </div>
         
-        {/* Tabs */}
         <div className="mt-12">
           <Tabs defaultValue="overview" className="w-full" onValueChange={setSelectedTab}>
             <TabsList className="bg-cinebuzz-card w-full justify-start">
@@ -241,7 +235,6 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
             
             <TabsContent value="similar" className="mt-6">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                {/* Sample similar movies - would be fetched from API in real application */}
                 {[3, 5, 7, 9, 2].map((id) => {
                   const similarMovie = movie.id === id ? 
                     movies.find(m => m.id !== movie.id) : 
