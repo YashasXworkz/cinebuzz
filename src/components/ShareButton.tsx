@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Share2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { ShareModal } from "@/components/ShareModal";
+import ShareModal from "@/components/ShareModal";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface ShareButtonProps {

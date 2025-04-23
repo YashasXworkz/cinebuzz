@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Star, Clock, Plus, Play } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -14,13 +15,20 @@ interface TVShowDetailProps {
 const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
   const [selectedTab, setSelectedTab] = useState('overview');
 
+  // Using optional chaining for potentially missing properties
+  const backdrop = show.backdropUrl || '';
+  const plot = show.description || '';
+  const creator = show.director || 'Unknown';
+  const trailer = show.trailerUrl || '';
+  const cast = show.actors || [];
+
   return (
     <div className="pt-16">
       <div className="relative h-[50vh] w-full overflow-hidden">
         <div 
           className="absolute inset-0 w-full h-full bg-cover bg-center"
           style={{ 
-            backgroundImage: `url(${show.backdrop})`,
+            backgroundImage: `url(${backdrop})`,
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-cinebuzz-background via-cinebuzz-background/70 to-transparent opacity-100"></div>
@@ -32,7 +40,7 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
           <div className="flex-none">
             <div className="w-48 md:w-64 aspect-[2/3] rounded-lg overflow-hidden shadow-xl">
               <img 
-                src={show.poster} 
+                src={show.posterUrl} 
                 alt={show.title} 
                 className="w-full h-full object-cover"
               />
@@ -89,7 +97,7 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
                 contentId={show.id} 
                 contentType="tvshow" 
                 title={show.title} 
-                imageUrl={show.poster} 
+                imageUrl={show.posterUrl} 
               />
             </div>
             
@@ -122,7 +130,7 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
               <div className="space-y-8">
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-3">Synopsis</h3>
-                  <p className="text-cinebuzz-subtitle leading-relaxed">{show.plot}</p>
+                  <p className="text-cinebuzz-subtitle leading-relaxed">{plot}</p>
                 </div>
                 
                 <div>
@@ -130,7 +138,7 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <h4 className="text-white font-medium">Creator</h4>
-                      <p className="text-cinebuzz-subtitle">{show.creator}</p>
+                      <p className="text-cinebuzz-subtitle">{creator}</p>
                     </div>
                     <div>
                       <h4 className="text-white font-medium">Genre</h4>
@@ -151,7 +159,7 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
                   <iframe 
                     width="100%" 
                     height="100%" 
-                    src={`https://www.youtube.com/embed/${show.trailer}`}
+                    src={`https://www.youtube.com/embed/${trailer}`}
                     title={`${show.title} Trailer`}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -180,7 +188,7 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
             
             <TabsContent value="cast" className="mt-6">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                {show.cast.map((actor, index) => (
+                {cast.map((actor, index) => (
                   <div key={index} className="bg-cinebuzz-card rounded-lg p-4 text-center">
                     <div className="w-24 h-24 mx-auto rounded-full bg-cinebuzz-primary mb-3 overflow-hidden">
                       <img 
@@ -204,18 +212,18 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
                     show={{
                       id: show.id + 100 + index,
                       title: `Similar Show ${index + 1}`,
-                      poster: `https://picsum.photos/300/450?random=${index + 1}`,
-                      backdrop: `https://picsum.photos/1920/1080?random=${index + 1}`,
+                      posterUrl: `https://picsum.photos/300/450?random=${index + 1}`,
+                      backdropUrl: `https://picsum.photos/1920/1080?random=${index + 1}`,
                       year: 2023,
                       rating: 8.0,
                       status: "Ongoing",
                       seasons: 2,
                       episodes: 24,
                       genre: ["Drama", "Action"],
-                      plot: "A similar show with an interesting plot.",
-                      creator: "Creator Name",
-                      cast: ["Actor 1", "Actor 2"],
-                      trailer: "dQw4w9WgXcQ",
+                      description: "A similar show with an interesting plot.",
+                      director: "Creator Name",
+                      actors: ["Actor 1", "Actor 2"],
+                      trailerUrl: "dQw4w9WgXcQ",
                       platform: ["Netflix", "Hulu"]
                     }} 
                   />
