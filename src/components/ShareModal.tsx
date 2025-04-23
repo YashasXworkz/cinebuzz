@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Copy, Check, X } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -8,7 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 interface ShareModalProps {
   isOpen: boolean;
   onClose: () => void;
-  contentId: number;
+  contentId: number | string;
   contentType: 'movie' | 'tvshow';
   title: string;
   imageUrl: string;

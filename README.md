@@ -1,73 +1,77 @@
-# Welcome to your Lovable project
+# CineBuzz Unleashed
 
-## Project info
+A modern movie and TV show browsing application with user authentication.
 
-**URL**: https://lovable.dev/projects/f724e3eb-339f-4a4a-b6d5-0ad864289928
+## Project Structure
 
-## How can I edit this code?
+- **Frontend**: React, TypeScript, React Router, Tailwind CSS
+- **Backend**: Node.js, Express, MongoDB
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- User authentication (signup, signin, profile)
+- Browse movies and TV shows
+- View detailed information about movies and TV shows
+- Mobile-responsive design
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/f724e3eb-339f-4a4a-b6d5-0ad864289928) and start prompting.
+## Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v14+)
+- MongoDB (local or Atlas)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Setup
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
+```
+git clone https://github.com/yourusername/cinebuzz-unleashed-nexus.git
+cd cinebuzz-unleashed-nexus
+```
 
-Follow these steps:
+2. Install dependencies:
+```
+node setup.js
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. Configure MongoDB:
+   - Update the MongoDB connection string in `server/.env`
+   - Set a secure JWT secret key
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. Start the development servers:
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Frontend:
+```
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Backend:
+```
+cd server
+npm run dev
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## API Documentation
 
-**Use GitHub Codespaces**
+### Authentication Endpoints
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **POST /api/auth/signup** - Register a new user
+  - Required fields: `name`, `email`, `password`
 
-## What technologies are used for this project?
+- **POST /api/auth/signin** - Login a user
+  - Required fields: `email`, `password`
 
-This project is built with:
+- **GET /api/auth/me** - Get current user profile
+  - Requires authentication
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## TMDB API Integration
 
-## How can I deploy this project?
+The application uses the TMDB (The Movie Database) API for image URLs, but currently has hardcoded movie and TV show data. To fully integrate with TMDB API:
 
-Simply open [Lovable](https://lovable.dev/projects/f724e3eb-339f-4a4a-b6d5-0ad864289928) and click on Share -> Publish.
+1. Get an API key from [TMDB](https://www.themoviedb.org/documentation/api)
+2. Add your API key to the environment variables
+3. Modify the data fetching logic to use the TMDB API endpoints
 
-## Can I connect a custom domain to my Lovable project?
+## Contributing
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Contributions are welcome! Please feel free to submit a Pull Request.

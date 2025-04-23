@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Star, Clock, Plus, Play } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -21,6 +20,11 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
   const creator = 'Unknown'; // Default as this doesn't exist in TVShow
   const trailer = ''; // Default as this doesn't exist in TVShow
   const cast = []; // Default as actors doesn't exist in TVShow
+
+  const handleWatchTrailer = () => {
+    const query = encodeURIComponent(`${show.title} ${show.year} tv show trailer`);
+    window.open(`https://www.youtube.com/results?search_query=${query}`, '_blank');
+  };
 
   return (
     <div className="pt-16">
@@ -82,6 +86,7 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
             <div className="flex flex-wrap gap-4 mb-8">
               <Button 
                 className="bg-cinebuzz-accent hover:bg-cinebuzz-accent/90 text-white flex items-center"
+                onClick={handleWatchTrailer}
               >
                 <Play className="mr-2 h-5 w-5" />
                 Watch Trailer
