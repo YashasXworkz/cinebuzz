@@ -15,12 +15,12 @@ interface TVShowDetailProps {
 const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
   const [selectedTab, setSelectedTab] = useState('overview');
 
-  // Using optional chaining for potentially missing properties
-  const backdrop = show.backdropUrl || '';
-  const plot = show.description || '';
-  const creator = show.director || 'Unknown';
-  const trailer = show.trailerUrl || '';
-  const cast = show.actors || [];
+  // Map TVShow properties to the expected variable names
+  const backdrop = show.poster; // Using poster as backdrop
+  const plot = show.synopsis;
+  const creator = 'Unknown'; // Default as this doesn't exist in TVShow
+  const trailer = ''; // Default as this doesn't exist in TVShow
+  const cast = []; // Default as actors doesn't exist in TVShow
 
   return (
     <div className="pt-16">
@@ -40,7 +40,7 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
           <div className="flex-none">
             <div className="w-48 md:w-64 aspect-[2/3] rounded-lg overflow-hidden shadow-xl">
               <img 
-                src={show.posterUrl} 
+                src={show.poster} 
                 alt={show.title} 
                 className="w-full h-full object-cover"
               />
@@ -97,7 +97,7 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
                 contentId={show.id} 
                 contentType="tvshow" 
                 title={show.title} 
-                imageUrl={show.posterUrl} 
+                imageUrl={show.poster} 
               />
             </div>
             
@@ -137,8 +137,8 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
                   <h3 className="text-xl font-semibold text-white mb-3">Details</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <h4 className="text-white font-medium">Creator</h4>
-                      <p className="text-cinebuzz-subtitle">{creator}</p>
+                      <h4 className="text-white font-medium">Language</h4>
+                      <p className="text-cinebuzz-subtitle">{show.language}</p>
                     </div>
                     <div>
                       <h4 className="text-white font-medium">Genre</h4>
@@ -155,17 +155,19 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
                   </div>
                 </div>
                 
-                <div className="aspect-video w-full overflow-hidden rounded-lg">
-                  <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src={`https://www.youtube.com/embed/${trailer}`}
-                    title={`${show.title} Trailer`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
+                {trailer && (
+                  <div className="aspect-video w-full overflow-hidden rounded-lg">
+                    <iframe 
+                      width="100%" 
+                      height="100%" 
+                      src={`https://www.youtube.com/embed/${trailer}`}
+                      title={`${show.title} Trailer`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                )}
               </div>
             </TabsContent>
             
@@ -188,7 +190,7 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
             
             <TabsContent value="cast" className="mt-6">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                {cast.map((actor, index) => (
+                {cast.length > 0 ? cast.map((actor, index) => (
                   <div key={index} className="bg-cinebuzz-card rounded-lg p-4 text-center">
                     <div className="w-24 h-24 mx-auto rounded-full bg-cinebuzz-primary mb-3 overflow-hidden">
                       <img 
@@ -200,7 +202,11 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
                     <h4 className="text-white font-medium">{actor}</h4>
                     <p className="text-cinebuzz-subtitle text-sm">Character Name</p>
                   </div>
-                ))}
+                )) : (
+                  <div className="col-span-full text-center py-8">
+                    <p className="text-cinebuzz-subtitle">No cast information available</p>
+                  </div>
+                )}
               </div>
             </TabsContent>
             
@@ -212,18 +218,15 @@ const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
                     show={{
                       id: show.id + 100 + index,
                       title: `Similar Show ${index + 1}`,
-                      posterUrl: `https://picsum.photos/300/450?random=${index + 1}`,
-                      backdropUrl: `https://picsum.photos/1920/1080?random=${index + 1}`,
-                      year: 2023,
+                      poster: `https://picsum.photos/300/450?random=${index + 1}`,
                       rating: 8.0,
-                      status: "Ongoing",
+                      year: 2023,
+                      language: show.language,
+                      genre: ["Drama", "Action"],
                       seasons: 2,
                       episodes: 24,
-                      genre: ["Drama", "Action"],
-                      description: "A similar show with an interesting plot.",
-                      director: "Creator Name",
-                      actors: ["Actor 1", "Actor 2"],
-                      trailerUrl: "dQw4w9WgXcQ",
+                      status: "Ongoing",
+                      synopsis: "A similar show with an interesting plot.",
                       platform: ["Netflix", "Hulu"]
                     }} 
                   />
