@@ -3,15 +3,15 @@ import { Star, Clock, Plus, Play } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Movie, movies } from '@/utils/movieData';
-import MovieCard from "@/components/MovieCard";
+import { TVShow } from '@/utils/tvShowsData';
+import TVShowCard from '@/components/TVShowCard';
 import ShareButton from "@/components/ShareButton";
 
-interface MovieDetailProps {
-  movie: Movie;
+interface TVShowDetailProps {
+  show: TVShow;
 }
 
-const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
+const TVShowDetail: React.FC<TVShowDetailProps> = ({ show }) => {
   const [selectedTab, setSelectedTab] = useState('overview');
 
   return (
@@ -20,7 +20,7 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
         <div 
           className="absolute inset-0 w-full h-full bg-cover bg-center"
           style={{ 
-            backgroundImage: `url(${movie.backdropUrl})`,
+            backgroundImage: `url(${show.backdrop})`,
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-cinebuzz-background via-cinebuzz-background/70 to-transparent opacity-100"></div>
@@ -32,8 +32,8 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
           <div className="flex-none">
             <div className="w-48 md:w-64 aspect-[2/3] rounded-lg overflow-hidden shadow-xl">
               <img 
-                src={movie.posterUrl} 
-                alt={movie.title} 
+                src={show.poster} 
+                alt={show.title} 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -41,26 +41,26 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
           
           <div className="flex-grow">
             <h1 className="text-3xl md:text-5xl font-bold text-white font-heading mb-3">
-              {movie.title}
+              {show.title}
             </h1>
             
             <div className="flex flex-wrap items-center gap-4 mb-6">
               <div className="flex items-center">
                 <Star className="h-5 w-5 text-cinebuzz-yellow mr-1" fill="currentColor" />
-                <span className="text-white font-bold">{movie.rating}</span>
+                <span className="text-white font-bold">{show.rating}</span>
                 <span className="text-cinebuzz-subtitle ml-1">/10</span>
               </div>
               
-              <div className="text-cinebuzz-subtitle">{movie.year}</div>
+              <div className="text-cinebuzz-subtitle">{show.year}</div>
               
               <div className="flex items-center text-cinebuzz-subtitle">
                 <Clock className="h-4 w-4 mr-1" />
-                {movie.runtime}
+                <span>S{show.seasons} • {show.episodes} Episodes</span>
               </div>
             </div>
             
             <div className="flex flex-wrap gap-2 mb-8">
-              {movie.genre.map((genre, index) => (
+              {show.genre.map((genre, index) => (
                 <Badge 
                   key={index} 
                   variant="outline" 
@@ -86,30 +86,23 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
                 Add to Watchlist
               </Button>
               <ShareButton 
-                contentId={movie.id} 
-                contentType="movie" 
-                title={movie.title} 
-                imageUrl={movie.posterUrl} 
+                contentId={show.id} 
+                contentType="tvshow" 
+                title={show.title} 
+                imageUrl={show.poster} 
               />
             </div>
             
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-white mb-2">Available on</h3>
               <div className="flex gap-4">
-                {movie.platforms.map((platform, index) => (
-                  <a 
-                    key={index} 
-                    href={platform.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                {show.platform.map((platform, index) => (
+                  <div
+                    key={index}
                     className="bg-cinebuzz-card hover:bg-cinebuzz-card/70 py-2 px-4 rounded-lg transition-colors"
                   >
-                    <img 
-                      src={platform.logo} 
-                      alt={platform.name} 
-                      className="h-8 object-contain"
-                    />
-                  </a>
+                    {platform}
+                  </div>
                 ))}
               </div>
             </div>
@@ -120,8 +113,8 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
           <Tabs defaultValue="overview" className="w-full" onValueChange={setSelectedTab}>
             <TabsList className="bg-cinebuzz-card w-full justify-start">
               <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="episodes">Episodes</TabsTrigger>
               <TabsTrigger value="cast">Cast & Crew</TabsTrigger>
-              <TabsTrigger value="reviews">Reviews</TabsTrigger>
               <TabsTrigger value="similar">Similar</TabsTrigger>
             </TabsList>
             
@@ -129,27 +122,27 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
               <div className="space-y-8">
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-3">Synopsis</h3>
-                  <p className="text-cinebuzz-subtitle leading-relaxed">{movie.plot}</p>
+                  <p className="text-cinebuzz-subtitle leading-relaxed">{show.plot}</p>
                 </div>
                 
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-3">Details</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <h4 className="text-white font-medium">Director</h4>
-                      <p className="text-cinebuzz-subtitle">{movie.director}</p>
+                      <h4 className="text-white font-medium">Creator</h4>
+                      <p className="text-cinebuzz-subtitle">{show.creator}</p>
                     </div>
                     <div>
                       <h4 className="text-white font-medium">Genre</h4>
-                      <p className="text-cinebuzz-subtitle">{movie.genre.join(', ')}</p>
+                      <p className="text-cinebuzz-subtitle">{show.genre.join(', ')}</p>
                     </div>
                     <div>
-                      <h4 className="text-white font-medium">Release Year</h4>
-                      <p className="text-cinebuzz-subtitle">{movie.year}</p>
+                      <h4 className="text-white font-medium">First Air Date</h4>
+                      <p className="text-cinebuzz-subtitle">{show.year}</p>
                     </div>
                     <div>
-                      <h4 className="text-white font-medium">Runtime</h4>
-                      <p className="text-cinebuzz-subtitle">{movie.runtime}</p>
+                      <h4 className="text-white font-medium">Status</h4>
+                      <p className="text-cinebuzz-subtitle">{show.status}</p>
                     </div>
                   </div>
                 </div>
@@ -158,8 +151,8 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
                   <iframe 
                     width="100%" 
                     height="100%" 
-                    src={movie.trailerUrl}
-                    title={`${movie.title} Trailer`}
+                    src={`https://www.youtube.com/embed/${show.trailer}`}
+                    title={`${show.title} Trailer`}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -168,9 +161,26 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
               </div>
             </TabsContent>
             
+            <TabsContent value="episodes" className="mt-6">
+              <div className="space-y-4">
+                {Array.from({ length: 5 }, (_, i) => i + 1).map((episode) => (
+                  <div key={episode} className="bg-cinebuzz-card p-4 rounded-lg">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-white font-medium">Episode {episode}</h3>
+                      <span className="text-cinebuzz-subtitle text-sm">45 min</span>
+                    </div>
+                    <p className="text-cinebuzz-subtitle text-sm mb-3">Episode description goes here...</p>
+                    <Button variant="outline" size="sm" className="text-cinebuzz-accent border-cinebuzz-accent/50 bg-transparent hover:bg-cinebuzz-accent/10">
+                      Watch
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
+            
             <TabsContent value="cast" className="mt-6">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                {movie.cast.map((actor, index) => (
+                {show.cast.map((actor, index) => (
                   <div key={index} className="bg-cinebuzz-card rounded-lg p-4 text-center">
                     <div className="w-24 h-24 mx-auto rounded-full bg-cinebuzz-primary mb-3 overflow-hidden">
                       <img 
@@ -186,66 +196,30 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
               </div>
             </TabsContent>
             
-            <TabsContent value="reviews" className="mt-6">
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-semibold text-white">User Reviews</h3>
-                  <Button className="bg-cinebuzz-accent text-white hover:bg-cinebuzz-accent/90">
-                    Write a Review
-                  </Button>
-                </div>
-                
-                <div className="space-y-6">
-                  {[1, 2, 3].map((item) => (
-                    <div key={item} className="bg-cinebuzz-card rounded-lg p-4">
-                      <div className="flex items-start mb-3">
-                        <div className="w-10 h-10 rounded-full bg-cinebuzz-primary overflow-hidden mr-3">
-                          <img 
-                            src={`https://i.pravatar.cc/150?img=${item + 20}`} 
-                            alt="User" 
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div>
-                          <div className="flex items-center">
-                            <h4 className="text-white font-medium">User Name</h4>
-                            <div className="ml-3 flex">
-                              {Array(5).fill(0).map((_, index) => (
-                                <Star 
-                                  key={index} 
-                                  className={`h-4 w-4 ${index < 4 ? 'text-cinebuzz-yellow' : 'text-gray-600'}`} 
-                                  fill="currentColor" 
-                                />
-                              ))}
-                            </div>
-                          </div>
-                          <p className="text-cinebuzz-subtitle text-xs">Posted on April 15, 2023</p>
-                        </div>
-                      </div>
-                      <p className="text-cinebuzz-subtitle">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. 
-                        Praesent eget nisl id nunc ultrices finibus. Duis eros ex, malesuada at 
-                        pretium nec, tristique eget sapien.
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </TabsContent>
-            
             <TabsContent value="similar" className="mt-6">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                {[3, 5, 7, 9, 2].map((id) => {
-                  const similarMovie = movie.id === id ? 
-                    movies.find(m => m.id !== movie.id) : 
-                    movies.find(m => m.id === id);
-                  
-                  if (!similarMovie) return null;
-                  
-                  return (
-                    <MovieCard key={id} movie={similarMovie} />
-                  );
-                })}
+                {[...Array(5)].map((_, index) => (
+                  <TVShowCard 
+                    key={index} 
+                    show={{
+                      id: show.id + 100 + index,
+                      title: `Similar Show ${index + 1}`,
+                      poster: `https://picsum.photos/300/450?random=${index + 1}`,
+                      backdrop: `https://picsum.photos/1920/1080?random=${index + 1}`,
+                      year: 2023,
+                      rating: 8.0,
+                      status: "Ongoing",
+                      seasons: 2,
+                      episodes: 24,
+                      genre: ["Drama", "Action"],
+                      plot: "A similar show with an interesting plot.",
+                      creator: "Creator Name",
+                      cast: ["Actor 1", "Actor 2"],
+                      trailer: "dQw4w9WgXcQ",
+                      platform: ["Netflix", "Hulu"]
+                    }} 
+                  />
+                ))}
               </div>
             </TabsContent>
           </Tabs>
@@ -255,4 +229,4 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
   );
 };
 
-export default MovieDetail;
+export default TVShowDetail;
